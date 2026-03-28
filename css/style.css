@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c0c0b;
+  --surface: #131312;
+  --border: #252522;
+  --text: #e8e4dc;
+  --muted: #6b6860;
+  --accent: #d4a853;
+  --accent-lo: rgba(212, 168, 83, 0.08);
+  --accent-md: rgba(212, 168, 83, 0.18);
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "DM Mono", "Courier New", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+body > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 72px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12, 12, 11, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: fadeDown 0.6s var(--ease-out-expo) both;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text);
+
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav a {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s var(--ease-in-out);
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav button {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+
+nav button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+body > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(5rem, 14vw, 10rem) clamp(1.5rem, 5vw, 4rem)
+    clamp(4rem, 10vw, 8rem);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.8s 0.1s var(--ease-out-expo) both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body > div:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 83, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > div:nth-child(2) > * {
+  position: relative;
+  z-index: 1;
+}
+
+body > div:nth-child(2) > p:first-child {
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 14ch;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.9s 0.2s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(2) > p:first-child::after {
+  content: "";
+}
+
+body > div:nth-child(2) > p:nth-child(2) {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 48ch;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  animation: fadeUp 1s 0.3s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(2) > p:nth-child(3) {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 1s 0.35s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(2) > button {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s var(--ease-out-expo),
+    box-shadow 0.3s;
+  animation: fadeUp 1s 0.45s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(2) > button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+body > div:nth-child(2) > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(212, 168, 83, 0.25);
+}
+
+body > div:nth-child(2) > button:hover::before {
+  transform: translateX(0);
+}
+
+body > div:nth-child(2) > button:active {
+  transform: translateY(0);
+}
+
+body > div:nth-child(2) > a {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+  animation: fadeUp 1s 0.5s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(2) > a:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+body > div:nth-child(3) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border);
+  margin: 0 clamp(1.5rem, 5vw, 4rem);
+  margin-bottom: 6rem;
+  animation: fadeUp 1s 0.55s var(--ease-out-expo) both;
+}
+
+body > div:nth-child(3) > div {
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 0.35s;
+  overflow: hidden;
+}
+
+body > div:nth-child(3) > div:last-child {
+  border-right: none;
+}
+
+body > div:nth-child(3) > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.45s var(--ease-out-expo);
+}
+
+body > div:nth-child(3) > div:hover::before {
+  width: 100%;
+}
+
+body > div:nth-child(3) > div:hover {
+  background: var(--accent-lo);
+}
+
+body > div:nth-child(3) > div:nth-child(1)::after {
+  content: "01";
+}
+body > div:nth-child(3) > div:nth-child(2)::after {
+  content: "02";
+}
+body > div:nth-child(3) > div:nth-child(3)::after {
+  content: "03";
+}
+
+body > div:nth-child(3) > div::after {
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.5rem);
+  right: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--border);
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+body > div:nth-child(3) > div:hover::after {
+  color: var(--accent);
+}
+
+body > div:nth-child(3) h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+body > div:nth-child(3) p {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 32ch;
+  transition: color 0.3s;
+}
+
+body > div:nth-child(3) > div:hover p {
+  color: #9a9690;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+::selection {
+  background: var(--accent-md);
+  color: var(--text);
+}
+
+@media (max-width: 680px) {
+  body > div:nth-child(3) {
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+
+  body > div:nth-child(3) > div {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  body > div:nth-child(3) > div:last-child {
+    border-bottom: none;
+  }
+
+  nav {
+    gap: 1rem;
+  }
+}
