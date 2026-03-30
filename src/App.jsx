@@ -1,11 +1,10 @@
-import React from "react";
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "./firebaseConfig";
-
+import Dashboard from "./components/Dashboard";
 import Features from "./components/Features";
 import ToggleButton from "./components/ToggleButton";
+import useAuth from "./components/useAuth";
 
 function App() {
+  const [isLoggedIn, handleLogin] = useAuth();
   return (
     <>
       <header>
@@ -14,7 +13,9 @@ function App() {
       <nav>
         <a href="#features-section">Features</a>
         <ToggleButton />
-        <button id="login-btn">SIGN IN</button>
+        <button id="login-btn" onClick={handleLogin}>
+          SIGN IN
+        </button>
       </nav>
 
       <div>
@@ -24,11 +25,15 @@ function App() {
           compound into something you're proud of - one day at a time.
         </p>
         <p>Ready to build unbreakable habits?</p>
-        <button id="sign-in-with-google-button">Continue with Google</button>
+        <button id="sign-in-with-google-button" onClick={handleLogin}>
+          Continue with Google
+        </button>
         <a href="#features-section">Explore features</a>
       </div>
 
       <Features />
+
+      {isLoggedIn && <Dashboard />}
     </>
   );
 }
