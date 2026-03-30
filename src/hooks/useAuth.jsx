@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../firebaseConfig";
+import { auth, googleProvider } from "../services/firebaseConfig";
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,6 +9,7 @@ const useAuth = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
+        console.log(user);
         setIsLoggedIn(true);
       })
       .catch((error) => {

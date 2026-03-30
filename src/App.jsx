@@ -1,7 +1,7 @@
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Features from "./components/Features";
 import ToggleButton from "./components/ToggleButton";
-import useAuth from "./components/useAuth";
+import useAuth from "./hooks/useAuth";
 
 function App() {
   const [isLoggedIn, handleLogin] = useAuth();
