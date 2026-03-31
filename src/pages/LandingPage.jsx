@@ -1,8 +1,11 @@
-import Dashboard from "./Dashboard";
+import { useContext } from "react";
+import { AuthContext } from "../App";
 import Features from "../components/Features";
 import ToggleButton from "../components/ToggleButton";
+import "../App.css";
 
-function LandingPage({ handleLogin }) {
+function LandingPage() {
+  const { user, handleLogin } = useContext(AuthContext);
   return (
     <>
       <header>
