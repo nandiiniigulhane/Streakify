@@ -1,9 +1,19 @@
-import React, { useState } from "react";
-import { signInWithPopup } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebaseConfig";
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const subscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      currentUser ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    });
+
+    return () => subscribe();
+  }, []);
 
   const handleLogin = () => {
     signInWithPopup(auth, googleProvider)

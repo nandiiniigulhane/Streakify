@@ -1,5 +1,14 @@
+import { useContext } from "react";
+import { ThemeContext } from "../App";
+
 function ToggleButton() {
-  return <button id="toggle-btn">Toggle Theme</button>;
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <button id="toggle-btn" onClick={toggleTheme}>
+      Toggle Theme
+    </button>
+  );
 }
 
 export default ToggleButton;

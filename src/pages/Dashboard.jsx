@@ -1,5 +1,7 @@
+import ToggleButton from "../components/ToggleButton";
+
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return <ToggleButton />;
 }
 
 export default Dashboard;

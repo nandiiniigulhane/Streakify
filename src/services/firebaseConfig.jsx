@@ -1,10 +1,3 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-
-// import {
-//   getAuth,
-//   GoogleAuthProvider,
-// } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
