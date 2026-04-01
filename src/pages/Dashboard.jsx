@@ -3,6 +3,7 @@ import Logout from "../components/Logout";
 import YesOrNo from "../components/YesOrNo";
 import Quantitative from "../components/Quantitative";
 import { useState } from "react";
+import CreateHabit from "../components/CreateHabit";
 
 function Dashboard() {
   const [showComponents, setShowComponents] = useState(false);
@@ -13,24 +14,12 @@ function Dashboard() {
   return (
     <div>
       <ToggleButton />
-      {/* <button id="create-habit-btn" onClick={handleShowComponents}>
-        Create New Habit
-      </button>
+      <CreateHabit handleShowComponents={handleShowComponents} />
       {showComponents && (
         <>
           <YesOrNo />
           <Quantitative />
         </>
-      )} */}
-      {showComponents ? (
-        <>
-          <YesOrNo />
-          <Quantitative />
-        </>
-      ) : (
-        <button id="create-habit-btn" onClick={handleShowComponents}>
-          Create New Habit
-        </button>
       )}
       <Logout />
     </div>
