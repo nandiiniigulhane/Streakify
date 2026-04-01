@@ -9,11 +9,12 @@ export const AuthContext = createContext();
 
 function App() {
   const { user, handleLogin } = useAuth();
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
       return newTheme;
     });
   };
