@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebaseConfig";
 
@@ -24,7 +25,16 @@ const useAuth = () => {
       });
   };
 
-  return { user, handleLogin };
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
+  };
+
+  return { user, handleLogin, handleLogout };
 };
 
 export default useAuth;

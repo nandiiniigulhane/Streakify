@@ -1,3 +1,5 @@
+import "./styles/Features.css";
+
 function Features() {
   const features = [
     {
@@ -20,9 +22,8 @@ function Features() {
     <div id="features-section">
       {features.map((feature, index) => (
         <div key={index} className="feature-card">
-          <h3>
-            {feature.serialNo}. {feature.title}
-          </h3>
+          <span className="serial-no">{feature.serialNo}</span>
+          <h3>{feature.title}</h3>
           <p>{feature.desc}</p>
         </div>
       ))}

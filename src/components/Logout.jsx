@@ -1,14 +1,7 @@
-import { auth } from "../services/firebaseConfig";
-import { signOut } from "firebase/auth";
+import useAuth from "../hooks/useAuth";
 
 function Logout() {
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Logout failed:", error.message);
-    }
-  };
+  const { handleLogout } = useAuth();
   return (
     <div className="logout">
       <button className="logout-button" onClick={handleLogout}>

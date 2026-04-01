@@ -1,7 +1,7 @@
 import LandingPage from "./pages/LandingPage";
 import useAuth from "./hooks/useAuth";
 import Dashboard from "./pages/Dashboard";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 
 export const ThemeContext = createContext();
@@ -9,19 +9,20 @@ export const AuthContext = createContext();
 
 function App() {
   const { user, handleLogin } = useAuth();
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
-
-      document.body.style.backgroundColor =
-        newTheme === "dark" ? "black" : "white";
-      document.body.style.color = newTheme === "dark" ? "white" : "black";
-
       return newTheme;
     });
   };
+
+  useEffect(() => {
+    // document.body.style.backgroundColor = theme === "dark" ? "black" : "white";
+    // document.body.style.color = theme === "dark" ? "white" : "black";
+    document.body.classList.toggle("light", theme === "light");
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

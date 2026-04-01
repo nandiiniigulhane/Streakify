@@ -10,11 +10,10 @@ function Dashboard() {
     setShowComponents(!showComponents);
   };
 
-  // };
   return (
     <div>
       <ToggleButton />
-      <button id="create-habit-btn" onClick={handleShowComponents}>
+      {/* <button id="create-habit-btn" onClick={handleShowComponents}>
         Create New Habit
       </button>
       {showComponents && (
@@ -22,6 +21,16 @@ function Dashboard() {
           <YesOrNo />
           <Quantitative />
         </>
+      )} */}
+      {showComponents ? (
+        <>
+          <YesOrNo />
+          <Quantitative />
+        </>
+      ) : (
+        <button id="create-habit-btn" onClick={handleShowComponents}>
+          Create New Habit
+        </button>
       )}
       <Logout />
     </div>
