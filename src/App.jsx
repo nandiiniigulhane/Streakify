@@ -20,8 +20,6 @@ function App() {
   };
 
   useEffect(() => {
-    // document.body.style.backgroundColor = theme === "dark" ? "black" : "white";
-    // document.body.style.color = theme === "dark" ? "white" : "black";
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
 
