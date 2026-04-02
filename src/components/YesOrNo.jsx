@@ -1,64 +1,75 @@
-import { useState } from "react";
-
-function YesOrNoForm({ onCancel, handleCreateHabit }) {
-  const submitData = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    const habit = {
-      title: formData.get("habit-title"),
-      color: formData.get("color"),
-      notes: formData.get("notes"),
+function YesOrNo({ handleCreateHabit, onClose, onBack }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    handleCreateHabit({
+      title: fd.get("habit-title"),
+      color: fd.get("color"),
+      notes: fd.get("notes"),
       type: "yes/no",
-    };
-
-    handleCreateHabit(habit);
-    event.currentTarget.reset();
-    onCancel();
+    });
+    onClose();
   };
 
   return (
-    <form onSubmit={submitData}>
-      <label htmlFor="habit-title">Title</label>
-      <input
-        type="text"
-        name="habit-title"
-        id="habit-title"
-        placeholder="e.g. Exercise"
-        required
-      />
-
-      <label htmlFor="color">Choose a color</label>
-      <input type="color" name="color" id="color" />
-
-      <label htmlFor="notes">Notes</label>
-      <input type="text" name="notes" id="notes" />
-
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-    </form>
-  );
-}
-
-function YesOrNo({ handleCreateHabit }) {
-  const [show, setShow] = useState(false);
-
-  return (
-    <div>
-      <h2>Yes or No</h2>
-      <p>Did you complete a habit today?</p>
-
-      {!show && <button onClick={() => setShow(true)}>Create</button>}
-
-      {show && (
-        <YesOrNoForm
-          onCancel={() => setShow(false)}
-          handleCreateHabit={handleCreateHabit}
-        />
-      )}
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <div>
+            <h2 className="modal-title">Yes or No</h2>
+            <p className="modal-subtitle">Daily completion habit</p>
+          </div>
+          <button className="modal-close" onClick={onClose}>
+            ✕
+          </button>
+        </div>
+        <div className="modal-body">
+          <button className="btn-back" onClick={onBack}>
+            Back
+          </button>
+          <form className="habit-form" onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label htmlFor="yn-title">Title</label>
+              <input
+                type="text"
+                name="habit-title"
+                id="yn-title"
+                placeholder="e.g. Meditate"
+                required
+              />
+            </div>
+            <div className="form-field">
+              <label>Colour</label>
+              <div className="color-row">
+                <input
+                  type="color"
+                  name="color"
+                  id="yn-color"
+                  defaultValue="#d97706"
+                />
+                <span className="color-hint">Pick a colour for this habit</span>
+              </div>
+            </div>
+            <div className="form-field">
+              <label htmlFor="yn-notes">Notes</label>
+              <input
+                type="text"
+                name="notes"
+                id="yn-notes"
+                placeholder="Optional reminder"
+              />
+            </div>
+            <div className="form-actions">
+              <button type="submit" className="btn-save">
+                Save Habit
+              </button>
+              <button type="button" className="btn-cancel" onClick={onClose}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

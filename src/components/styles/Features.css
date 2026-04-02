@@ -124,7 +124,6 @@
   max-width: 280px;
 }
 
-/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   #features-section {
     grid-template-columns: 1fr;
@@ -132,7 +131,6 @@
   }
 
   .feature-card + .feature-card::before {
-    /* Switch vertical divider to horizontal */
     top: 0;
     left: var(--space-8);
     right: var(--space-8);

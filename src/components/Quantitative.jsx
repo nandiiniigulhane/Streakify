@@ -1,78 +1,99 @@
-import { useState } from "react";
-
-function QuantitativeForm({ onCancel, handleCreateHabit }) {
-  const submitData = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    const habit = {
-      title: formData.get("habit-title"),
-      color: formData.get("color"),
-      units: formData.get("unit"),
-      target: formData.get("target"),
-      notes: formData.get("notes"),
+function Quantitative({ handleCreateHabit, onClose, onBack }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    handleCreateHabit({
+      title: fd.get("habit-title"),
+      color: fd.get("color"),
+      units: fd.get("unit"),
+      target: fd.get("target"),
+      notes: fd.get("notes"),
       type: "quantitative",
-    };
-
-    handleCreateHabit(habit);
-    event.currentTarget.reset();
-    onCancel();
+    });
+    onClose();
   };
 
   return (
-    <form onSubmit={submitData}>
-      <label htmlFor="habit-title">Title</label>
-      <input
-        type="text"
-        name="habit-title"
-        id="habit-title"
-        placeholder="e.g. Run"
-        required
-      />
-
-      <label htmlFor="color">Choose a color</label>
-      <input type="color" name="color" id="color" />
-
-      <label htmlFor="unit">Unit</label>
-      <input
-        type="text"
-        name="unit"
-        id="unit"
-        placeholder="e.g. km, pages"
-        required
-      />
-
-      <label htmlFor="target">Target</label>
-      <input type="number" name="target" id="target" placeholder="e.g. 5" />
-
-      <label htmlFor="notes">Notes</label>
-      <input type="text" name="notes" id="notes" placeholder="(Optional)" />
-
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-    </form>
-  );
-}
-
-function Quantitative({ handleCreateHabit }) {
-  const [show, setShow] = useState(false);
-
-  return (
-    <div>
-      <h2>Measurable</h2>
-      <p>Track habits with numbers</p>
-
-      {!show && <button onClick={() => setShow(true)}>Create</button>}
-
-      {show && (
-        <QuantitativeForm
-          onCancel={() => setShow(false)}
-          handleCreateHabit={handleCreateHabit}
-        />
-      )}
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <div>
+            <h2 className="modal-title">Measurable</h2>
+            <p className="modal-subtitle">Track habits with numbers</p>
+          </div>
+          <button className="modal-close" onClick={onClose}>
+            ✕
+          </button>
+        </div>
+        <div className="modal-body">
+          <button className="btn-back" onClick={onBack}>
+            Back
+          </button>
+          <form className="habit-form" onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label htmlFor="q-title">Title</label>
+              <input
+                type="text"
+                name="habit-title"
+                id="q-title"
+                placeholder="e.g. Run"
+                required
+              />
+            </div>
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="q-unit">Unit</label>
+                <input
+                  type="text"
+                  name="unit"
+                  id="q-unit"
+                  placeholder="km, pages…"
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label htmlFor="q-target">Daily target</label>
+                <input
+                  type="number"
+                  name="target"
+                  id="q-target"
+                  placeholder="e.g. 5"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div className="form-field">
+              <label>Colour</label>
+              <div className="color-row">
+                <input
+                  type="color"
+                  name="color"
+                  id="q-color"
+                  defaultValue="#7c3aed"
+                />
+                <span className="color-hint">Pick a colour for this habit</span>
+              </div>
+            </div>
+            <div className="form-field">
+              <label htmlFor="q-notes">Notes</label>
+              <input
+                type="text"
+                name="notes"
+                id="q-notes"
+                placeholder="Optional"
+              />
+            </div>
+            <div className="form-actions">
+              <button type="submit" className="btn-save">
+                Save Habit
+              </button>
+              <button type="button" className="btn-cancel" onClick={onClose}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Sans:wght@300;400;500&display=swap");
+
+/* ── Layout ────────────────────────────────────────────────── */
+.dashboard {
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--color-surface);
+  border-bottom: 0.5px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dashboard-wordmark {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  position: relative;
+}
+
+.dashboard-wordmark::after {
+  content: "●";
+  font-size: 7px;
+  color: #d97706;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
+.dashboard-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── New Habit Button ──────────────────────────────────────── */
+#create-habit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+#create-habit-btn::before {
+  content: "+";
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+#create-habit-btn:hover {
+  background: #b45309;
+}
+
+#create-habit-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Dashboard Body ────────────────────────────────────────── */
+.dashboard-body {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.dashboard-section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+/* ── Logout / Ghost buttons ────────────────────────────────── */
+.btn-ghost {
+  padding: 7px 13px;
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-ghost:hover {
+  background: var(--color-surface-2);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .dashboard-header {
+    padding: 12px 16px;
+  }
+  .dashboard-body {
+    padding: 24px 16px;
+  }
+}

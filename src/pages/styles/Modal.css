@@ -1,0 +1,330 @@
+/* ── Backdrop ──────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: backdropIn 0.2s ease both;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Modal Panel ───────────────────────────────────────────── */
+.modal {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  overflow: hidden;
+  animation: modalPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Modal Header ──────────────────────────────────────────── */
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+}
+
+.modal-title {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.modal-subtitle {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+.modal-close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.modal-close:hover {
+  background: var(--color-surface-2);
+}
+
+/* ── Modal Body ────────────────────────────────────────────── */
+.modal-body {
+  padding: 16px 20px 20px;
+}
+
+/* ── Type Picker Grid ──────────────────────────────────────── */
+.habit-type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.habit-type-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 14px;
+  background: var(--color-surface-2);
+  border: 0.5px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.habit-type-card:hover {
+  border-color: #d97706;
+  background: var(--color-surface);
+}
+
+.habit-type-card:active {
+  transform: scale(0.98);
+}
+
+.habit-type-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.habit-type-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.habit-type-icon.yes-no {
+  background: #fef3c7;
+}
+
+.habit-type-icon.measurable {
+  background: #ede9fe;
+}
+
+.habit-type-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.habit-type-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ── Back Button ───────────────────────────────────────────── */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 14px;
+  transition: color 0.15s;
+}
+
+.btn-back::before {
+  content: "←";
+}
+
+.btn-back:hover {
+  color: var(--color-text-secondary);
+}
+
+/* ── Habit Form ────────────────────────────────────────────── */
+.habit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-field label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.form-field input[type="text"],
+.form-field input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--color-surface-2);
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  appearance: none;
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="number"]:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
+}
+
+.form-field input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Colour row */
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-field input[type="color"] {
+  width: 36px;
+  height: 36px;
+  padding: 2px;
+  background: var(--color-surface-2);
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-field input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 5px;
+}
+
+.form-field input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 5px;
+}
+
+.color-hint {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* ── Form Actions ──────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn-save {
+  flex: 1;
+  padding: 9px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-save:hover {
+  background: #b45309;
+}
+.btn-save:active {
+  transform: scale(0.98);
+}
+
+.btn-cancel {
+  padding: 9px 14px;
+  background: transparent;
+  border: 0.5px solid var(--color-border);
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-cancel:hover {
+  background: var(--color-surface-2);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 440px) {
+  .modal {
+    border-radius: 12px;
+  }
+  .habit-type-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
