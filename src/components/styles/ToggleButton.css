@@ -1,7 +1,3 @@
-/* ============================================================
-   ToggleButton.css — Light / Dark Theme Toggle
-   ============================================================ */
-
 #toggle-btn {
   position: relative;
   display: inline-flex;
@@ -21,7 +17,6 @@
   overflow: hidden;
 }
 
-/* Sun/moon icon via pseudo-element */
 #toggle-btn::before {
   content: "○";
   font-size: 1em;

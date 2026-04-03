@@ -18,7 +18,6 @@ const useAuth = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
       })
       .catch((error) => {
         console.error("Error during signing in:", error);

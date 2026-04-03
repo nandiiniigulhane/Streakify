@@ -1,15 +1,9 @@
-/* ============================================================
-   LandingPage.css — Hero, CTA, Page Layout
-   ============================================================ */
-
-/* ── Page wrapper ──────────────────────────────────────────── */
 .landing-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* ── Hero Section ──────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -22,7 +16,6 @@
   overflow: hidden;
 }
 
-/* Atmospheric background radial glow */
 .hero::before {
   content: "";
   position: absolute;
@@ -41,7 +34,6 @@
   animation: fadeIn 1.2s var(--ease-out) 0.3s both;
 }
 
-/* Decorative top rule line */
 .hero::after {
   content: "";
   position: absolute;
@@ -55,7 +47,6 @@
   margin-top: 64px;
 }
 
-/* ── Eyebrow / Label ───────────────────────────────────────── */
 .hero-label {
   display: inline-flex;
   align-items: center;
@@ -79,7 +70,6 @@
   opacity: 0.6;
 }
 
-/* ── Headline ──────────────────────────────────────────────── */
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(var(--text-4xl), 8vw, var(--text-5xl));
@@ -95,7 +85,7 @@
 .hero h1 em {
   font-style: italic;
   color: var(--color-accent);
-  /* Shimmer effect on the italic */
+
   background: linear-gradient(
     90deg,
     var(--color-accent-warm) 0%,
@@ -110,7 +100,6 @@
   animation: shimmer 4s linear infinite;
 }
 
-/* ── Sub-copy ──────────────────────────────────────────────── */
 .hero-description {
   font-size: var(--text-lg);
   font-weight: 300;
@@ -121,7 +110,6 @@
   animation: fadeUp var(--duration-slow) var(--ease-out) 0.35s both;
 }
 
-/* ── CTA Group ─────────────────────────────────────────────── */
 .hero-cta-group {
   display: flex;
   align-items: center;
@@ -131,7 +119,6 @@
   animation: fadeUp var(--duration-slow) var(--ease-out) 0.5s both;
 }
 
-/* Google Sign-in CTA */
 #sign-in-with-google-button {
   display: inline-flex;
   align-items: center;
@@ -172,7 +159,6 @@
   transform: translateY(0);
 }
 
-/* "Explore features" ghost link */
 .hero-cta-group > a {
   font-size: var(--text-sm);
   font-weight: 400;
@@ -198,7 +184,6 @@
   transform: translateY(4px);
 }
 
-/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .hero {
     padding-top: calc(var(--space-16) + 64px);

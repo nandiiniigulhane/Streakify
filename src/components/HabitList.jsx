@@ -69,30 +69,44 @@ function HabitList({ habits, currentDate, onPrev, onNext, isToday }) {
       </div>
 
       <div className="habit-list">
-        {habits.map((habit, i) => (
-          <div
-            key={i}
-            className="habit-card"
-            style={{ "--habit-color": habit.color }}
-          >
-            <div className="habit-card-info">
-              <div className="habit-card-dot" />
-              <span className="habit-card-name">{habit.title}</span>
-              <span className="habit-card-type">{habit.type}</span>
-            </div>
+        {habits.map((habit, i) => {
+          const isMeasurable = habit.type === "quantitative";
 
-            {dateList.map((d, j) => {
-              const isTodayCol = d.toDateString() === today.toDateString();
-              return (
-                <div key={j} className="habit-date-cell">
-                  <div
-                    className={`date-tick${isTodayCol ? " is-today-col" : ""}`}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        ))}
+          return (
+            <div
+              key={i}
+              className="habit-card"
+              style={{ "--habit-color": habit.color }}
+            >
+              <div className="habit-card-info">
+                <div className="habit-card-dot" />
+                <span className="habit-card-name">{habit.title}</span>
+                <span className="habit-card-type">{habit.type}</span>
+              </div>
+
+              {dateList.map((d, j) => {
+                const isTodayCol = d.toDateString() === today.toDateString();
+                return (
+                  <div key={j} className="habit-date-cell">
+                    {isMeasurable ? (
+                      <input
+                        type="number"
+                        className={`habit-number-input${isTodayCol ? " is-today-col" : ""}`}
+                        placeholder="—"
+                        min="0"
+                      />
+                    ) : (
+                      <input
+                        type="checkbox"
+                        className={`habit-checkbox${isTodayCol ? " is-today-col" : ""}`}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
