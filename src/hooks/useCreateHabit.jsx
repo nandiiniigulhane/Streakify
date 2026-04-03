@@ -7,6 +7,8 @@ const useCreateHabit = () => {
     setHabits((prev) => [...prev, habit]);
   };
 
+  // console.log(habits);
+
   return { habits, handleCreateHabit };
 };
 

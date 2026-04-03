@@ -7,6 +7,7 @@ function YesOrNo({ handleCreateHabit, onClose, onBack }) {
       color: fd.get("color"),
       notes: fd.get("notes"),
       type: "yes/no",
+      date: new Date().toLocaleDateString(),
     });
     onClose();
   };

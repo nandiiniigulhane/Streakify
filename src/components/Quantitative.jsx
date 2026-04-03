@@ -9,6 +9,7 @@ function Quantitative({ handleCreateHabit, onClose, onBack }) {
       target: fd.get("target"),
       notes: fd.get("notes"),
       type: "quantitative",
+      date: new Date().toLocaleDateString(),
     });
     onClose();
   };
