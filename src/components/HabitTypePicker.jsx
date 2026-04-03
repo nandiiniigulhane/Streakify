@@ -18,7 +18,6 @@ function HabitTypePicker({ onSelect, onClose }) {
               onClick={() => onSelect("yes-no")}
             >
               <div className="habit-type-icon yes-no">
-                {/* checkmark */}
                 <svg
                   viewBox="0 0 16 16"
                   stroke="#d97706"
@@ -39,7 +38,6 @@ function HabitTypePicker({ onSelect, onClose }) {
               onClick={() => onSelect("quantitative")}
             >
               <div className="habit-type-icon measurable">
-                {/* bar chart */}
                 <svg
                   viewBox="0 0 16 16"
                   stroke="#7c3aed"

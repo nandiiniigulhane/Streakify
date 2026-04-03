@@ -1,7 +1,20 @@
 import "./styles/HabitList.css";
 
 const DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
+const MONTH_ABBR = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "June",
+  "July",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function buildDateList(anchorDate) {
   const list = [];
   for (let i = 4; i >= 0; i--) {
@@ -62,7 +75,9 @@ function HabitList({ habits, currentDate, onPrev, onNext, isToday }) {
               className={`date-col-header${isTodayCol ? " is-today" : ""}`}
             >
               <span className="date-col-day">{DAY_ABBR[d.getDay()]}</span>
-              <span className="date-col-num">{d.getDate()}</span>
+              <span className="date-col-num">
+                {d.getDate()} {MONTH_ABBR[d.getMonth()]}
+              </span>
             </div>
           );
         })}
