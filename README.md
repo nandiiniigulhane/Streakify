@@ -7,7 +7,7 @@ A minimal habit tracking web application built with **React** and **Firebase** t
 👉🏻 [Try it here](https://streakify-theta.vercel.app)
 
 > 💬 Note: The UI was crafted with the help of Claude AI using advanced frontend prompts.
-> Check out frontendskill.md to see the prompt used.
+> Check out [frontendskill.md](frontendskill.md) to see the prompt used.
 
 ## 🌟 Overview
 
