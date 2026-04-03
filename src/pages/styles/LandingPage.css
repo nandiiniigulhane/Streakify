@@ -84,7 +84,7 @@
 
 .hero h1 em {
   font-style: italic;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
   color: var(--color-accent);
 
   background: linear-gradient(
