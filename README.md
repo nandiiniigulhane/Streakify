@@ -4,10 +4,10 @@ A minimal habit tracking web application built with **React** and **Firebase** t
 
 ## 🚀 Live Demo
 
-👉🏻 Try it here: https://streakify-theta.vercel.app
+👉🏻 [Try it here](https://streakify-theta.vercel.app)
 
-💬 Note: The UI was crafted with the help of Claude AI using advanced frontend prompts.
-Check out frontendskill.md to see the prompt used.
+> 💬 Note: The UI was crafted with the help of Claude AI using advanced frontend prompts.
+> Check out frontendskill.md to see the prompt used.
 
 ## 🌟 Overview
 
@@ -17,33 +17,28 @@ The focus is on **clean UI**, **quick logging**, and **streak building**.
 
 ## ✨ Features
 
-- 🔐 **Google Authentication**
-  - Secure login using Firebase Authentication (Google Sign-In)
+**Google Authentication:** Secure login using Firebase Authentication (Google Sign-In)
 
-- 📊 **Dashboard**
-  - Central place to view and manage all habits
+**Dashboard:** Central place to view and manage all habits
 
-- ➕ **Add Habits**
-  - Create new habits with ease
+**Add Habits**: Create new habits with ease
 
-- 🔘 **Two Habit Types**
-  - **Yes/No Habits**
-    - Example: _Did you exercise today?_
-    - Simple toggle-based tracking
+**Two Habit Types**
 
-  - **Measurable Habits**
-    - Example: _How many pages did you read today?_
-    - Input numeric values
-    - Shows donut chart to see progress
+- **Yes/No Habits**
+  - Example: _Did you exercise today?_
+  - Simple toggle-based tracking
 
-- 📅 **Daily Tracking**
-  - Log habits per day
+- **Measurable Habits**
+  - Example: _How many pages did you read today?_
+  - Input numeric values
+  - Shows donut chart to see progress
 
-- 🔥 **Streak Tracking**
-  - Maintain consistency and build streaks
+**Daily Tracking:** Log habits per day
 
-- 🎯 **Minimal Interface**
-  - Clean and distraction-free UI for better focus
+**Streak Tracking:** Maintain consistency and build streaks
+
+**Minimal Interface:** Clean and distraction-free UI for better focus
 
 ## 🛠️ Tech Stack
 
