@@ -8,40 +8,26 @@ import YesOrNo from "../components/YesOrNo";
 import Quantitative from "../components/Quantitative";
 import "./styles/Dashboard.css";
 import "./styles/Modal.css";
-import Dates from "../components/Dates";
 
 function Dashboard() {
   const { habits, handleCreateHabit } = useCreateHabit();
   const [modal, setModal] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [showLastDate, setShowLastDate] = useState(false);
   const close = () => setModal(null);
 
+  const isToday = currentDate.toDateString() === new Date().toDateString();
+
   const handlePrev = () => {
-    const temp = new Date(currentDate);
-    temp.setDate(temp.getDate() - 1);
-    setCurrentDate(temp);
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() - 1);
+    setCurrentDate(d);
   };
 
   const handleNext = () => {
-    const temp = new Date(currentDate);
-    temp.setDate(temp.getDate() + 1);
-    setCurrentDate(temp);
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() + 1);
+    setCurrentDate(d);
   };
-
-  const helperForPrevButton = () => {
-    const today = new Date();
-
-    if (currentDate.toDateString() === today.toDateString()) {
-      setShowLastDate(false);
-    } else {
-      setShowLastDate(true);
-    }
-  };
-
-  useEffect(() => {
-    helperForPrevButton();
-  }, [currentDate]);
 
   return (
     <div className="dashboard">
@@ -56,22 +42,15 @@ function Dashboard() {
         </div>
       </header>
 
-      <div>
-        {showLastDate && (
-          <button type="button" onClick={handleNext}>
-            {" "}
-            Prev
-          </button>
-        )}
-
-        <Dates date={currentDate} />
-        <button type="button" onClick={handlePrev}>
-          Next
-        </button>
-      </div>
       <main className="dashboard-body">
         <p className="dashboard-section-label">Your habits</p>
-        <HabitList habits={habits} />
+        <HabitList
+          habits={habits}
+          currentDate={currentDate}
+          onPrev={handlePrev}
+          onNext={handleNext}
+          isToday={isToday}
+        />
       </main>
 
       {modal === "picker" && (

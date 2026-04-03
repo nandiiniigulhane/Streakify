@@ -1,15 +1,237 @@
+/* ============================================================
+   HabitList.css — Habit rows + date column grid
+   ============================================================ */
+
+/* ── Wrapper ───────────────────────────────────────────────── */
+.habit-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Date header row ───────────────────────────────────────── */
+.habit-date-header {
+  display: grid;
+  grid-template-columns: 1fr repeat(5, 52px);
+  align-items: center;
+  padding: 0 0 10px 0;
+  margin-bottom: 4px;
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.habit-date-header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  grid-column: 1;
+}
+
+.date-nav-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Arrow nav buttons */
+.btn-arrow {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--color-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-arrow:hover {
+  background: var(--color-surface-2);
+  border-color: var(--color-border-secondary, rgba(0, 0, 0, 0.25));
+}
+
+.btn-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.btn-arrow svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Date column cells in header */
+.date-col-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.date-col-day {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.date-col-num {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  line-height: 1;
+}
+
+/* Highlight today */
+.date-col-header.is-today .date-col-day {
+  color: #d97706;
+}
+
+.date-col-header.is-today .date-col-num {
+  color: #d97706;
+  position: relative;
+}
+
+.date-col-header.is-today .date-col-num::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #d97706;
+  margin: 3px auto 0;
+}
+
+/* ── Habit rows ────────────────────────────────────────────── */
 .habit-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
+.habit-card {
+  display: grid;
+  grid-template-columns: 1fr repeat(5, 52px);
+  align-items: center;
+  padding: 10px 0 10px 14px;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+  animation: cardIn 0.3s ease both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Left colour accent bar */
+.habit-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--habit-color, #d97706);
+  border-radius: 10px 0 0 10px;
+}
+
+.habit-card:hover {
+  border-color: var(--color-border-secondary, rgba(0, 0, 0, 0.2));
+  transform: translateX(2px);
+}
+
+/* Habit name cell */
+.habit-card-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.habit-card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--habit-color, #d97706);
+  flex-shrink: 0;
+}
+
+.habit-card-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.habit-card-type {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Date tick cell */
+.habit-date-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-tick {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 0.5px solid var(--color-border);
+  background: var(--color-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.date-tick.is-today-col {
+  border-color: rgba(217, 119, 6, 0.35);
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
 .habit-list-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 48px 16px;
+  padding: 52px 16px;
   border: 0.5px dashed var(--color-border);
   border-radius: 12px;
 }
@@ -38,86 +260,36 @@
   color: var(--color-text-muted);
 }
 
-.habit-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--color-surface);
-  border: 0.5px solid var(--color-border);
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  transition:
-    border-color 0.15s,
-    transform 0.15s;
-  animation: cardIn 0.3s ease both;
-}
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.habit-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--habit-color, #d97706);
-  border-radius: 10px 0 0 10px;
-}
-
-.habit-card:hover {
-  border-color: var(--color-border-secondary, rgba(0, 0, 0, 0.2));
-  transform: translateX(2px);
-}
-
-.habit-card-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--habit-color, #d97706);
-  flex-shrink: 0;
-}
-
-.habit-card h3 {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-text-primary);
-  flex: 1;
-}
-
-.habit-card-type {
-  font-size: 11px;
-  color: var(--color-text-muted);
-  background: var(--color-surface-2);
-  padding: 2px 8px;
-  border-radius: 99px;
-  border: 0.5px solid var(--color-border);
-  white-space: nowrap;
-}
-
+/* ── Stagger animation ─────────────────────────────────────── */
 .habit-card:nth-child(1) {
-  animation-delay: 0.04s;
+  animation-delay: 0.03s;
 }
 .habit-card:nth-child(2) {
-  animation-delay: 0.08s;
+  animation-delay: 0.06s;
 }
 .habit-card:nth-child(3) {
-  animation-delay: 0.12s;
+  animation-delay: 0.09s;
 }
 .habit-card:nth-child(4) {
-  animation-delay: 0.16s;
+  animation-delay: 0.12s;
 }
 .habit-card:nth-child(5) {
-  animation-delay: 0.2s;
+  animation-delay: 0.15s;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .habit-date-header,
+  .habit-card {
+    grid-template-columns: 1fr repeat(5, 40px);
+  }
+
+  .date-col-num {
+    font-size: 12px;
+  }
+  .date-tick {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+  }
 }
