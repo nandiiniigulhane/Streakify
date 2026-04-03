@@ -1,18 +1,78 @@
-# React + Vite
+# Streakify 🔥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal habit tracking web application built with **React** and **Firebase** to help users stay consistent and build powerful daily routines.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+👉🏻 Try it here: https://streakify-theta.vercel.app
 
-## React Compiler
+💬 Note: The UI was crafted with the help of Claude AI using advanced frontend prompts.
+Check out frontendskill.md to see the prompt used.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 🌟 Overview
 
-Note: This will impact Vite dev & build performances.
+**Streakify** is a simple, distraction-free habit tracker designed for consistency. Users can sign in with their Google account, create habits, and track their daily progress using two flexible habit types.
 
-## Expanding the ESLint configuration
+The focus is on **clean UI**, **quick logging**, and **streak building**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🔐 **Google Authentication**
+  - Secure login using Firebase Authentication (Google Sign-In)
+
+- 📊 **Dashboard**
+  - Central place to view and manage all habits
+
+- ➕ **Add Habits**
+  - Create new habits with ease
+
+- 🔘 **Two Habit Types**
+  - **Yes/No Habits**
+    - Example: _Did you exercise today?_
+    - Simple toggle-based tracking
+
+  - **Measurable Habits**
+    - Example: _How many pages did you read today?_
+    - Input numeric values
+    - Shows donut chart to see progress
+
+- 📅 **Daily Tracking**
+  - Log habits per day
+
+- 🔥 **Streak Tracking**
+  - Maintain consistency and build streaks
+
+- 🎯 **Minimal Interface**
+  - Clean and distraction-free UI for better focus
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React
+- **Backend / Database:** Firebase (Firestore)
+- **Authentication:** Firebase Auth (Google Provider)
+- **Hosting:** Vercel
+
+## ⚙️ Setup & Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/nandiiniigulhane/Streakify.git
+   cd Streakify
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the app**
+
+   ```bash
+   npm run dev
+   ```
+
+## 💡 Inspiration
+
+Streakify is inspired by the idea that **small daily actions lead to big results**. Keep it simple, stay consistent 🔥🚀
