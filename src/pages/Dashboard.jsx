@@ -10,7 +10,8 @@ import "./styles/Dashboard.css";
 import "./styles/Modal.css";
 
 function Dashboard() {
-  const { habits, handleCreateHabit } = useCreateHabit();
+  const { habits, handleCreateHabit, habitData, handleHabitData } =
+    useCreateHabit();
   const [modal, setModal] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const close = () => setModal(null);
@@ -46,6 +47,8 @@ function Dashboard() {
         <p className="dashboard-section-label">Your habits</p>
         <HabitList
           habits={habits}
+          habitData={habitData}
+          handleHabitData={handleHabitData}
           currentDate={currentDate}
           onPrev={handlePrev}
           onNext={handleNext}

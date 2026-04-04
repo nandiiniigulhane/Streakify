@@ -15,6 +15,7 @@ const MONTH_ABBR = [
   "Nov",
   "Dec",
 ];
+
 function buildDateList(anchorDate) {
   const list = [];
   for (let i = 4; i >= 0; i--) {
@@ -25,16 +26,18 @@ function buildDateList(anchorDate) {
   return list;
 }
 
-function HabitList({ habits, currentDate, onPrev, onNext, isToday }) {
+function HabitList({
+  habits,
+  habitData,
+  handleHabitData,
+  currentDate,
+  onPrev,
+  onNext,
+  isToday,
+}) {
   if (!habits.length) {
     return (
       <div className="habit-list-empty">
-        <div className="habit-list-empty-icon">
-          <svg viewBox="0 0 16 16">
-            <circle cx="8" cy="8" r="6" />
-            <path d="M8 5v3l2 1.5" />
-          </svg>
-        </div>
         <p>No habits yet — hit New Habit to start.</p>
       </div>
     );
@@ -43,39 +46,41 @@ function HabitList({ habits, currentDate, onPrev, onNext, isToday }) {
   const today = new Date();
   const dateList = buildDateList(currentDate);
 
+  const helper = (habit, e, date) => {
+    let val;
+    if (habit.type === "quantitative") {
+      val = e.target.value;
+    } else {
+      val = e.target.checked;
+    }
+    handleHabitData(habit, val, date);
+  };
+
   return (
     <div className="habit-table">
+      {/* HEADER */}
       <div className="habit-date-header">
         <div className="habit-date-header-nav">
           <span className="date-nav-label">dates</span>
 
-          <button className="btn-arrow" onClick={onPrev} title="Earlier">
-            <svg viewBox="0 0 12 12">
-              <polyline points="8,2 4,6 8,10" />
-            </svg>
+          <button className="btn-arrow" onClick={onPrev}>
+            {"<"}
           </button>
-
-          <button
-            className="btn-arrow"
-            onClick={onNext}
-            disabled={isToday}
-            title="Later"
-          >
-            <svg viewBox="0 0 12 12">
-              <polyline points="4,2 8,6 4,10" />
-            </svg>
+          <button className="btn-arrow" onClick={onNext} disabled={isToday}>
+            {">"}
           </button>
         </div>
 
-        {dateList.map((d, i) => {
+        {dateList.map((d) => {
           const isTodayCol = d.toDateString() === today.toDateString();
+
           return (
             <div
-              key={i}
+              key={d.toISOString()}
               className={`date-col-header${isTodayCol ? " is-today" : ""}`}
             >
-              <span className="date-col-day">{DAY_ABBR[d.getDay()]}</span>
-              <span className="date-col-num">
+              <span>{DAY_ABBR[d.getDay()]}</span>
+              <span>
                 {d.getDate()} {MONTH_ABBR[d.getMonth()]}
               </span>
             </div>
@@ -83,37 +88,52 @@ function HabitList({ habits, currentDate, onPrev, onNext, isToday }) {
         })}
       </div>
 
+      {/* HABITS */}
       <div className="habit-list">
-        {habits.map((habit, i) => {
+        {habits.map((habit) => {
           const isMeasurable = habit.type === "quantitative";
 
           return (
             <div
-              key={i}
+              key={habit.title}
               className="habit-card"
               style={{ "--habit-color": habit.color }}
             >
               <div className="habit-card-info">
-                <div className="habit-card-dot" />
                 <span className="habit-card-name">{habit.title}</span>
                 <span className="habit-card-type">{habit.type}</span>
               </div>
 
-              {dateList.map((d, j) => {
+              {dateList.map((d) => {
                 const isTodayCol = d.toDateString() === today.toDateString();
+
+                const dateKey = d.toISOString().split("T")[0];
+                const value = habitData[habit.title]?.[dateKey];
+
                 return (
-                  <div key={j} className="habit-date-cell">
+                  <div
+                    key={`${habit.title}-${dateKey}`}
+                    className="habit-date-cell"
+                  >
                     {isMeasurable ? (
                       <input
                         type="number"
-                        className={`habit-number-input${isTodayCol ? " is-today-col" : ""}`}
+                        value={value || ""}
+                        onChange={(e) => helper(habit, e, d)}
+                        className={`habit-number-input${
+                          isTodayCol ? " is-today-col" : ""
+                        }`}
                         placeholder="—"
                         min="0"
                       />
                     ) : (
                       <input
                         type="checkbox"
-                        className={`habit-checkbox${isTodayCol ? " is-today-col" : ""}`}
+                        checked={value || false}
+                        onChange={(e) => helper(habit, e, d)}
+                        className={`habit-checkbox${
+                          isTodayCol ? " is-today-col" : ""
+                        }`}
                       />
                     )}
                   </div>
