@@ -1,16 +1,19 @@
+import { addHabit } from "../services/db";
+
 function Quantitative({ handleCreateHabit, onClose, onBack }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    handleCreateHabit({
+    const habit = {
       title: fd.get("habit-title"),
       color: fd.get("color"),
       units: fd.get("unit"),
       target: fd.get("target"),
       notes: fd.get("notes"),
       type: "quantitative",
-      date: new Date().toLocaleDateString(),
-    });
+    };
+    handleCreateHabit(habit);
+    addHabit(habit);
     onClose();
   };
 

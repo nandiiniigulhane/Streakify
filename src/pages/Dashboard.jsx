@@ -6,6 +6,7 @@ import Logout from "../components/Logout";
 import HabitTypePicker from "../components/HabitTypePicker";
 import YesOrNo from "../components/YesOrNo";
 import Quantitative from "../components/Quantitative";
+import { getHabits } from "../services/db";
 import "./styles/Dashboard.css";
 import "./styles/Modal.css";
 
@@ -29,6 +30,17 @@ function Dashboard() {
     d.setDate(d.getDate() + 1);
     setCurrentDate(d);
   };
+
+  useEffect(() => {
+    async function loadHabits() {
+      const temp = await getHabits();
+      for (var i of temp) {
+        handleCreateHabit(i);
+      }
+    }
+
+    loadHabits();
+  }, []);
 
   return (
     <div className="dashboard">

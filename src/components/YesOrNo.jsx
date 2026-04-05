@@ -1,14 +1,17 @@
+import { addHabit } from "../services/db";
+
 function YesOrNo({ handleCreateHabit, onClose, onBack }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    handleCreateHabit({
+    const habit = {
       title: fd.get("habit-title"),
       color: fd.get("color"),
       notes: fd.get("notes"),
       type: "yes/no",
-      date: new Date().toLocaleDateString(),
-    });
+    };
+    handleCreateHabit(habit);
+    addHabit(habit);
     onClose();
   };
 

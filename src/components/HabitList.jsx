@@ -90,12 +90,12 @@ function HabitList({
 
       {/* HABITS */}
       <div className="habit-list">
-        {habits.map((habit) => {
+        {habits.map((habit, idx) => {
           const isMeasurable = habit.type === "quantitative";
 
           return (
             <div
-              key={habit.title}
+              key={idx}
               className="habit-card"
               style={{ "--habit-color": habit.color }}
             >

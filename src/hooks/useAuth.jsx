@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebaseConfig";
+import { addUser } from "../services/db";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -19,6 +20,8 @@ const useAuth = () => {
       .then((result) => {
         const user = result.user;
         localStorage.setItem("uid", user.uid);
+        addUser(user.displayName, user.email);
+        console.log(user);
       })
       .catch((error) => {
         console.error("Error during signing in:", error);
