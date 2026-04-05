@@ -18,6 +18,7 @@ const useAuth = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
+        localStorage.setItem("uid", user.uid);
       })
       .catch((error) => {
         console.error("Error during signing in:", error);
@@ -28,6 +29,8 @@ const useAuth = () => {
     try {
       await signOut(auth);
       setUser(null);
+      localStorage.removeItem("uid");
+      localStorage.removeItem("token");
     } catch (error) {
       console.error("Logout failed:", error.message);
     }
