@@ -11,7 +11,7 @@ import "./styles/Dashboard.css";
 import "./styles/Modal.css";
 
 function Dashboard() {
-  const { habits, handleCreateHabit, habitData, handleHabitData } =
+  const { habits, handleCreateHabit, habitData, handleHabitData, setInitialHabitData } =
     useCreateHabit();
   const [modal, setModal] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -34,9 +34,14 @@ function Dashboard() {
   useEffect(() => {
     async function loadHabits() {
       const temp = await getHabits();
+      const initialData = {};
       for (var i of temp) {
         handleCreateHabit(i);
+        if (i.data) {
+          initialData[i.id] = i.data;
+        }
       }
+      setInitialHabitData(initialData);
     }
 
     loadHabits();

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { updateHabitData } from "../services/db";
 
 const useCreateHabit = () => {
   const [habits, setHabits] = useState([]);
@@ -8,19 +9,33 @@ const useCreateHabit = () => {
     setHabits((prev) => [...prev, habit]);
   };
 
-  const handleHabitData = (habit, val, date) => {
+  const handleHabitData = async (habit, val, date) => {
     const dateKey = new Date(date).toISOString().split("T")[0];
+
+    const newData = {
+      ...habitData[habit.id],
+      [dateKey]: val,
+    };
 
     setHabitData((prev) => ({
       ...prev,
-      [habit.id]: {
-        ...prev[habit.id],
-        [dateKey]: val,
-      },
+      [habit.id]: newData,
     }));
+
+    await updateHabitData(habit.id, newData);
   };
 
-  return { habits, handleCreateHabit, habitData, handleHabitData };
+  const setInitialHabitData = (data) => {
+    setHabitData(data);
+  };
+
+  return {
+    habits,
+    handleCreateHabit,
+    habitData,
+    handleHabitData,
+    setInitialHabitData,
+  };
 };
 
 export default useCreateHabit;

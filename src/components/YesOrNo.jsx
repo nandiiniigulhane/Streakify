@@ -9,6 +9,7 @@ function YesOrNo({ handleCreateHabit, onClose, onBack }) {
       color: fd.get("color"),
       notes: fd.get("notes"),
       type: "yes/no",
+      data: {},
     };
     const id = await addHabit(habit);
     habit.id = id;

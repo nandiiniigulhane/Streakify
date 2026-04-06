@@ -11,6 +11,7 @@ function Quantitative({ handleCreateHabit, onClose, onBack }) {
       target: fd.get("target"),
       notes: fd.get("notes"),
       type: "quantitative",
+      data: {},
     };
     const id = await addHabit(habit);
     habit.id = id;

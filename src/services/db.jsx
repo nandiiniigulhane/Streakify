@@ -1,5 +1,12 @@
 import { db } from "./firebaseConfig";
-import { collection, addDoc, setDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 const collectionName = "users";
 const habitCollection = "habits";
@@ -30,6 +37,16 @@ async function addHabit(habit) {
   }
 }
 
+async function updateHabitData(habitId, data) {
+  const uid = localStorage.getItem("uid");
+  try {
+    const habitRef = doc(db, collectionName, uid, habitCollection, habitId);
+    await updateDoc(habitRef, { data });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 async function getHabits() {
   const uid = localStorage.getItem("uid");
   try {
@@ -46,4 +63,4 @@ async function getHabits() {
   }
 }
 
-export { addHabit, getHabits, addUser };
+export { addHabit, getHabits, addUser, updateHabitData };
