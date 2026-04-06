@@ -11,8 +11,14 @@ import "./styles/Dashboard.css";
 import "./styles/Modal.css";
 
 function Dashboard() {
-  const { habits, handleCreateHabit, habitData, handleHabitData, setInitialHabitData } =
-    useCreateHabit();
+  const {
+    habits,
+    handleCreateHabit,
+    habitData,
+    handleHabitData,
+    deleteHabit,
+    setInitialHabitData,
+  } = useCreateHabit();
   const [modal, setModal] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const close = () => setModal(null);
@@ -70,6 +76,7 @@ function Dashboard() {
           onPrev={handlePrev}
           onNext={handleNext}
           isToday={isToday}
+          onDeleteHabit={deleteHabit}
         />
       </main>
 

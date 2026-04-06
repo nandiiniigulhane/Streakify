@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateHabitData } from "../services/db";
+import { updateHabitData, deleteHabitFromFirestore } from "../services/db";
 
 const useCreateHabit = () => {
   const [habits, setHabits] = useState([]);
@@ -25,6 +25,16 @@ const useCreateHabit = () => {
     await updateHabitData(habit.id, newData);
   };
 
+  const deleteHabit = async (id) => {
+    setHabits((prev) => prev.filter((habit) => habit.id !== id));
+    setHabitData((prev) => {
+      const newData = { ...prev };
+      delete newData[id];
+      return newData;
+    });
+    await deleteHabitFromFirestore(id);
+  };
+
   const setInitialHabitData = (data) => {
     setHabitData(data);
   };
@@ -34,6 +44,7 @@ const useCreateHabit = () => {
     handleCreateHabit,
     habitData,
     handleHabitData,
+    deleteHabit,
     setInitialHabitData,
   };
 };

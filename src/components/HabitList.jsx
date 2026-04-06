@@ -1,4 +1,3 @@
-import { deleteHabitFromFirestore } from "../services/db";
 import "./styles/HabitList.css";
 
 const DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -27,10 +26,6 @@ function buildDateList(anchorDate) {
   return list;
 }
 
-function deleteHabit(id) {
-  deleteHabitFromFirestore(id);
-}
-
 function HabitList({
   habits,
   habitData,
@@ -39,6 +34,7 @@ function HabitList({
   onPrev,
   onNext,
   isToday,
+  onDeleteHabit,
 }) {
   if (!habits.length) {
     return (
@@ -107,20 +103,31 @@ function HabitList({
               <div className="habit-card-info">
                 <div className="streak-display">
                   <span className="streak-emoji">🔥</span>
-                  <span className="streak-number">{Math.floor(Math.random() * 100) + 1}</span>
+                  <span className="streak-number">
+                    {Math.floor(Math.random() * 100) + 1}
+                  </span>
                 </div>
                 <div className="habit-name-type">
                   <span className="habit-card-name">{habit.title}</span>
                   <span className="habit-card-type">{habit.type}</span>
                 </div>
                 <div className="habit-delete-wrapper">
-                  <button 
-                    onClick={() => deleteHabit(habit.id)}
+                  <button
+                    onClick={() => onDeleteHabit(habit.id)}
                     className="habit-delete-btn"
                     title="Delete habit"
                     style={{ "--delete-color": habit.color }}
                   >
-                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M3 6h18M8 6v12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V6m-4-3h4a1 1 0 0 1 1 1v1H7V4a1 1 0 0 1 1-1z" />
                     </svg>
                     <span className="delete-text">Delete</span>
