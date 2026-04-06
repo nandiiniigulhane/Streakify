@@ -1,3 +1,4 @@
+import { deleteHabitFromFirestore } from "../services/db";
 import "./styles/HabitList.css";
 
 const DAY_ABBR = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -24,6 +25,10 @@ function buildDateList(anchorDate) {
     list.push(d);
   }
   return list;
+}
+
+function deleteHabit(id) {
+  deleteHabitFromFirestore(id);
 }
 
 function HabitList({
@@ -139,6 +144,7 @@ function HabitList({
                   </div>
                 );
               })}
+              <button onClick={() => deleteHabit(habit.id)}>Delete</button>
             </div>
           );
         })}

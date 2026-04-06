@@ -6,6 +6,7 @@ import {
   doc,
   getDocs,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const collectionName = "users";
@@ -63,4 +64,20 @@ async function getHabits() {
   }
 }
 
-export { addHabit, getHabits, addUser, updateHabitData };
+async function deleteHabitFromFirestore(id) {
+  const uid = localStorage.getItem("uid");
+  try {
+    const ref = doc(db, collectionName, uid, habitCollection, id);
+    await deleteDoc(ref);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+export {
+  addHabit,
+  getHabits,
+  addUser,
+  updateHabitData,
+  deleteHabitFromFirestore,
+};
