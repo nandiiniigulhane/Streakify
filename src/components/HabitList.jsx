@@ -105,8 +105,27 @@ function HabitList({
               style={{ "--habit-color": habit.color }}
             >
               <div className="habit-card-info">
-                <span className="habit-card-name">{habit.title}</span>
-                <span className="habit-card-type">{habit.type}</span>
+                <div className="streak-display">
+                  <span className="streak-emoji">🔥</span>
+                  <span className="streak-number">{Math.floor(Math.random() * 100) + 1}</span>
+                </div>
+                <div className="habit-name-type">
+                  <span className="habit-card-name">{habit.title}</span>
+                  <span className="habit-card-type">{habit.type}</span>
+                </div>
+                <div className="habit-delete-wrapper">
+                  <button 
+                    onClick={() => deleteHabit(habit.id)}
+                    className="habit-delete-btn"
+                    title="Delete habit"
+                    style={{ "--delete-color": habit.color }}
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6h18M8 6v12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V6m-4-3h4a1 1 0 0 1 1 1v1H7V4a1 1 0 0 1 1-1z" />
+                    </svg>
+                    <span className="delete-text">Delete</span>
+                  </button>
+                </div>
               </div>
 
               {dateList.map((d) => {
@@ -144,7 +163,6 @@ function HabitList({
                   </div>
                 );
               })}
-              <button onClick={() => deleteHabit(habit.id)}>Delete</button>
             </div>
           );
         })}
