@@ -95,7 +95,7 @@ function HabitList({
 
           return (
             <div
-              key={idx}
+              key={habit.id}
               className="habit-card"
               style={{ "--habit-color": habit.color }}
             >
@@ -108,11 +108,11 @@ function HabitList({
                 const isTodayCol = d.toDateString() === today.toDateString();
 
                 const dateKey = d.toISOString().split("T")[0];
-                const value = habitData[habit.title]?.[dateKey];
+                const value = habitData[habit.id]?.[dateKey];
 
                 return (
                   <div
-                    key={`${habit.title}-${dateKey}`}
+                    key={`${habit.id}-${dateKey}`}
                     className="habit-date-cell"
                   >
                     {isMeasurable ? (

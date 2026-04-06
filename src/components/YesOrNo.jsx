@@ -1,7 +1,7 @@
 import { addHabit } from "../services/db";
 
 function YesOrNo({ handleCreateHabit, onClose, onBack }) {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const habit = {
@@ -10,8 +10,9 @@ function YesOrNo({ handleCreateHabit, onClose, onBack }) {
       notes: fd.get("notes"),
       type: "yes/no",
     };
+    const id = await addHabit(habit);
+    habit.id = id;
     handleCreateHabit(habit);
-    addHabit(habit);
     onClose();
   };
 

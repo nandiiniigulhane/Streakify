@@ -22,8 +22,9 @@ async function addHabit(habit) {
   const uid = localStorage.getItem("uid");
   try {
     const habitRef = collection(db, collectionName, uid, habitCollection);
-    await addDoc(habitRef, habit);
+    const docRef = await addDoc(habitRef, habit);
     console.log("habit added!");
+    return docRef.id;
   } catch (error) {
     console.error(error.message);
   }

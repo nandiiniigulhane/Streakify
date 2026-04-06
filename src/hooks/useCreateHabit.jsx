@@ -13,8 +13,8 @@ const useCreateHabit = () => {
 
     setHabitData((prev) => ({
       ...prev,
-      [habit.title]: {
-        ...prev[habit.title],
+      [habit.id]: {
+        ...prev[habit.id],
         [dateKey]: val,
       },
     }));

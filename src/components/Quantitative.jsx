@@ -1,7 +1,7 @@
 import { addHabit } from "../services/db";
 
 function Quantitative({ handleCreateHabit, onClose, onBack }) {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const habit = {
@@ -12,8 +12,9 @@ function Quantitative({ handleCreateHabit, onClose, onBack }) {
       notes: fd.get("notes"),
       type: "quantitative",
     };
+    const id = await addHabit(habit);
+    habit.id = id;
     handleCreateHabit(habit);
-    addHabit(habit);
     onClose();
   };
 
