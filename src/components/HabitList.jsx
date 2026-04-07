@@ -15,7 +15,30 @@ const MONTH_ABBR = [
   "Nov",
   "Dec",
 ];
+function calculateStreak(data) {
+  if (!data) return 0;
 
+  const dates = Object.keys(data)
+    .filter(date => data[date]) // only completed days
+    .sort((a, b) => new Date(b) - new Date(a));
+
+  let streak = 0;
+  let today = new Date();
+
+  for (let i = 0; i < dates.length; i++) {
+    const d = new Date(dates[i]);
+
+    const diff = Math.floor((today - d) / (1000 * 60 * 60 * 24));
+
+    if (diff === i) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+
+  return streak;
+}
 function buildDateList(anchorDate) {
   const list = [];
   for (let i = 4; i >= 0; i--) {
@@ -104,8 +127,7 @@ function HabitList({
                 <div className="streak-display">
                   <span className="streak-emoji">🔥</span>
                   <span className="streak-number">
-                    {Math.floor(Math.random() * 100) + 1}
-                  </span>
+{calculateStreak(habitData[habit.id])}                  </span>
                 </div>
                 <div className="habit-name-type">
                   <span className="habit-card-name">{habit.title}</span>
